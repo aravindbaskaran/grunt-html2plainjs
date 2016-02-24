@@ -20,7 +20,7 @@ grunt.loadNpmTasks('grunt-html2plainjs');
 
 ### Overview
 
-Compiles HTML to plain old Javascript. Use `angular: true` option to work in `html2js` mode.
+Compiles HTML to plain old Javascript. Use `angular: true` option to work in `html2js` mode. `options.rename` is mandatory
 
 ### Setup
 
@@ -75,7 +75,7 @@ If no bundle module is desired, set this to false.
 
 #### options.rename
 Type: `Function`
-Default value: `none`
+**Required**
 
 A function that takes in the module identifier and returns the renamed module identifier to use instead for the template.  For example, a template located at `src/projects/projects.tpl.html` would be identified as `/src/projects/projects.tpl` with a rename function defined as:
 

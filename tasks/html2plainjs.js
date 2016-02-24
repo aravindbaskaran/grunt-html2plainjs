@@ -101,8 +101,7 @@ module.exports = function(grunt) {
         compiled += '\n}]);\n';
       }
     }else{
-      compiled += indentString + '$templateCache_'+moduleName + '=' + quoteChar + moduleName + quoteChar +
-        ',\n' + doubleIndent  + quoteChar +  content + quoteChar + ';';
+      compiled += indentString + '$templateCache_'+moduleName + '=' + quoteChar +  content + quoteChar + ';';
     }
 
     return compiled;
@@ -131,8 +130,7 @@ module.exports = function(grunt) {
         compiled += '\n])\n';
       }
     }else{
-      compiled += indentString + '$templateCache_'+moduleName + '=' + quoteChar + moduleName + quoteChar +
-        ',\n' + doubleIndent  + quoteChar +  content + quoteChar + ';';
+      compiled += indentString + '$templateCache_'+moduleName + '=' + quoteChar +  content + quoteChar + ';';
     }
 
     return compiled;
