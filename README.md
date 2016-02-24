@@ -1,7 +1,6 @@
+Fork of https://github.com/karlgoldstein/grunt-html2js
 # grunt-html2plainjs
-
 > Converts HTML templates to plain old JavaScript
-#Fork of https://github.com/karlgoldstein/grunt-html2js
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
 
@@ -11,7 +10,7 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 npm install grunt-html2plainjs --save-dev
 ```
 
-One the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('grunt-html2plainjs');
@@ -21,11 +20,7 @@ grunt.loadNpmTasks('grunt-html2plainjs');
 
 ### Overview
 
-Angular-JS normally loads templates lazily from the server as you reference them in your application (via `ng-include`, routing configuration or other mechanism).  Angular caches the source code for each template so that subsequent references do not require another server request.  However, if your application is divided into many small components, then the initial loading process may involve an unacceptably large number of additional server requests.
-
-This plugin converts a group of templates to JavaScript and assembles them into an Angular module that primes the cache directly when the module is loaded.  You can concatenate this module with your main application code so that Angular does not need to make any additional server requests to initialize the application.
-
-Note that this plugin does *not* compile the templates.  It simply caches the template source code.
+Compiles HTML to plain old Javascript. Use `angular: true` option to work in `html2js` mode.
 
 ### Setup
 
@@ -49,17 +44,6 @@ grunt.initConfig({
 })
 ```
 
-Assuming you concatenate the resulting file with the rest of your application code, you can then specify the module as a dependency in your code:
-
-```
-angular.module('main', ['templates-main'])
-  .config(['$routeProvider', function ($routeProvidear) {
-    $routeProvider.when('/somepath', {
-      templateUrl:'some/template.tpl.html',
-```
-
-Note that you should use relative paths to specify the template URL, to
-match the keys by which the template source is cached.
 
 ### Gotchas
 
@@ -258,55 +242,3 @@ See the `Gruntfile.js` in the project source code for various configuration exam
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-
-0.1.1 Build module even if templates do not exist yet
-
-0.1.2 Preserve line feeds in templates to avoid breaking &lt;pre>-formatted text
-
-0.1.3 Add option to set the `module` option to null to disable creation of bundle module
-
-0.1.4 Add rename option
-
-0.1.5 Add config options for quoteChar, indentString and fileHeaderString (thanks @jonathana)
-
-0.1.6 Add support for CoffeeScript (thanks @srigi)
-
-0.1.7 Escape backslashes in template source (issue #11, thanks @JoakimBe)
-
-0.1.8 Add fileFooterString option (issue #13, thanks @duro)
-
-0.1.9 Add useStrict option (pull request #15, thanks @marcoose)
-
-0.2.0 Add htmlmin option (pull request #16, thanks @buberdds)
-
-0.2.1 Fix dependencies for htmlmin (pull request #17, vielen dank @mlegenhausen)
-
-0.2.2 Fix counter of converted files (pull request #18, thanks @srigi)
-
-0.2.3 Add option to interpret 'module' as function (pull request #20, thanks @CodingGorilla)
-
-0.2.4 Add `process` option (pull request #24, thanks @scottrippey)
-
-0.2.5 Add task name as argument to function variant of module option (pull request #37, thanks @lukovnikov)
-
-0.2.6 Add support for auto-detecting Jade templates as input (thanks @bahmutov)
-
-0.2.7 Add singleModule module for placing all templates in a single module (PR #43, thanks @janeklb)
-
-0.2.8 Allow passing option to Jade templates (PR #46, thanks @NickClark)
-
-0.2.9 Support relative file names for Jade templates (PR #48, thanks @dvonlehman)
-
-0.3.0 Allow use strict in single mode (PR #58, thanks @mfeckie)
-
-0.3.1 Add watch feature (PR #67, thanks @startswithaj)
-
-0.3.2 Update to stable chokidar (PR #68, thanks @paulmillr)
-
-0.3.3 Fix dependency on jade (PR #72, thanks @mathewleon)
-
-0.3.4 Add existingModule option (PR #75, thanks @Jandalf)
-
-0.3.5 Adds options to support AMD modules (PR #75, thanks @Southpaw17)
