@@ -66,6 +66,7 @@ module.exports = function(grunt) {
     if (Object.keys(options.htmlmin).length) {
       try {
         content = minify(content, options.htmlmin);
+        grunt.log.writeln('htmlmin done');
       } catch (err) {
         grunt.warn(filepath + '\n' + err);
       }
