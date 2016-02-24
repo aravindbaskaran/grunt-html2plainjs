@@ -1,23 +1,23 @@
-# grunt-html2js
+# grunt-html2plainjs
 
-> Converts AngularJS templates to JavaScript
-
+> Converts HTML templates to plain old JavaScript
+#Fork of https://github.com/karlgoldstein/grunt-html2js
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-html2js --save-dev
+npm install grunt-html2plainjs --save-dev
 ```
 
 One the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-html2js');
+grunt.loadNpmTasks('grunt-html2plainjs');
 ```
 
-## The "html2js" task
+## The "html2plainjs" task
 
 ### Overview
 
@@ -31,13 +31,13 @@ Note that this plugin does *not* compile the templates.  It simply caches the te
 
 By default, this plugin assumes you are following the naming conventions and build pipeline of the [angular-app](https://github.com/angular-app/angular-app) demo application.
 
-In your project's Gruntfile, add a section named `html2js` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `html2plainjs` to the data object passed into `grunt.initConfig()`.
 
 This simplest configuration will assemble all templates in your src tree into a module named `templates-main`, and write the JavaScript source for the module to `tmp/template.js`:
 
 ```js
 grunt.initConfig({
-  html2js: {
+  html2plainjs: {
     options: {
       // custom options, see below
     },
@@ -204,9 +204,9 @@ If set to true, will use an existing module with the name from `module`, instead
 Type: `Boolean`
 Default value: `false`
 
-If set to true and used in conjunction with a long running/keep-alive process such as grunt-contrib-watch html2js will watch src files for changes and regenerate output to dest. It uses an internal cache so only the file that changes needs to be re-compliled. Useful for development process particularly if you have lots of jade templates. It is very similar to grunt-browserify's watch.
+If set to true and used in conjunction with a long running/keep-alive process such as grunt-contrib-watch html2plainjs will watch src files for changes and regenerate output to dest. It uses an internal cache so only the file that changes needs to be re-compliled. Useful for development process particularly if you have lots of jade templates. It is very similar to grunt-browserify's watch.
 
-N.B. If using grunt-watch you do not need to run the html2js task again on src changes as it watches internally for these. All you need to do is watch the destination file and live reload on change.
+N.B. If using grunt-watch you do not need to run the html2plainjs task again on src changes as it watches internally for these. All you need to do is watch the destination file and live reload on change.
 
 #### amd
 Type: `Boolean`

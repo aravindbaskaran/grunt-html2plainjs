@@ -1,6 +1,6 @@
 /*
- * grunt-html2js
- * https://github.com/karlgoldstein/grunt-html2js
+ * grunt-html2plainjs
+ * https://github.com/aravindbaskaran/grunt-html2plainjs
  *
  * Copyright (c) 2013 Karl Goldstein
  * Licensed under the MIT license.
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     // See https://github.com/gruntjs/grunt/wiki/Configuring-tasks
     // for configuration options that need to be tested
-    html2js: {
+    html2plainjs: {
 
       regex_in_template: {
         src: ['test/fixtures/pattern.tpl.html'],
@@ -157,6 +157,14 @@ module.exports = function(grunt) {
         },
         src: ['test/fixtures/one.tpl.html', 'test/fixtures/two.tpl.html'],
         dest: 'tmp/rename.js'
+      },
+
+      angular: {
+        options: {
+          angular: false
+        },
+        src: ['test/fixtures/three.tpl.html'],
+        dest: 'tmp/angular.js'
       },
 
       module_as_function: {
@@ -327,7 +335,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'html2js', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'html2plainjs', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

@@ -1,8 +1,8 @@
 /*
- * grunt-html2js
- * https://github.com/karlgoldstein/grunt-html2js
+ * grunt-html2plainjs
+ * https://github.com/aravindbaskaran/grunt-html2plainjs
  *
- * Copyright (c) 2013 Karl Goldstein
+ * Copyright (c) 2016 Aravind Baskaran
  * Licensed under the MIT license.
  */
 
@@ -79,6 +79,7 @@ module.exports = function(grunt) {
 
   // compile a template to an angular module
   var compileTemplate = function(moduleName, filepath, options) {
+    var useAngular = options.angular;
     var quoteChar    = options.quoteChar;
     var indentString = options.indentString;
     var withModule   = !options.singleModule;
@@ -87,16 +88,21 @@ module.exports = function(grunt) {
     var strict       = (options.useStrict) ? indentString + quoteChar + 'use strict' + quoteChar + ';\n' : '';
     var compiled = '';
 
-    if (withModule) {
-      compiled += 'angular.module(' + quoteChar + moduleName +
-        quoteChar + ', []).run([' + quoteChar + '$templateCache' + quoteChar + ', function($templateCache) {\n' + strict;
-    }
+    if(useAngular){
+      if (withModule) {
+        compiled += 'angular.module(' + quoteChar + moduleName +
+          quoteChar + ', []).run([' + quoteChar + '$templateCache' + quoteChar + ', function($templateCache) {\n' + strict;
+      }
 
-    compiled += indentString + '$templateCache.put(' + quoteChar + moduleName + quoteChar +
-      ',\n' + doubleIndent  + quoteChar +  content + quoteChar + ');';
+      compiled += indentString + '$templateCache.put(' + quoteChar + moduleName + quoteChar +
+        ',\n' + doubleIndent  + quoteChar +  content + quoteChar + ');';
 
-    if (withModule) {
-      compiled += '\n}]);\n';
+      if (withModule) {
+        compiled += '\n}]);\n';
+      }
+    }else{
+      compiled += indentString + '$templateCache_'+moduleName + '=' + quoteChar + moduleName + quoteChar +
+        ',\n' + doubleIndent  + quoteChar +  content + quoteChar + ';';
     }
 
     return compiled;
@@ -104,6 +110,7 @@ module.exports = function(grunt) {
 
   // compile a template to an angular module
   var compileCoffeeTemplate = function(moduleName, filepath, options) {
+    var useAngular = options.angular;
     var quoteChar    = options.quoteChar;
     var indentString = options.indentString;
     var withModule   = !options.singleModule;
@@ -111,22 +118,27 @@ module.exports = function(grunt) {
     var doubleIndent = indentString + indentString;
     var compiled = '';
 
-    if (withModule) {
-      compiled += 'angular.module(' + quoteChar + moduleName +
-        quoteChar + ', []).run([' + quoteChar + '$templateCache' + quoteChar + ', ($templateCache) ->\n';
-    }
+    if(angular){
+      if (withModule) {
+        compiled += 'angular.module(' + quoteChar + moduleName +
+          quoteChar + ', []).run([' + quoteChar + '$templateCache' + quoteChar + ', ($templateCache) ->\n';
+      }
 
-    compiled += indentString + '$templateCache.put(' + quoteChar + moduleName + quoteChar +
-      ',\n' + doubleIndent  + quoteChar +  content + quoteChar + ')';
+      compiled += indentString + '$templateCache.put(' + quoteChar + moduleName + quoteChar +
+        ',\n' + doubleIndent  + quoteChar +  content + quoteChar + ')';
 
-    if (withModule) {
-      compiled += '\n])\n';
+      if (withModule) {
+        compiled += '\n])\n';
+      }
+    }else{
+      compiled += indentString + '$templateCache_'+moduleName + '=' + quoteChar + moduleName + quoteChar +
+        ',\n' + doubleIndent  + quoteChar +  content + quoteChar + ';';
     }
 
     return compiled;
   };
 
-  grunt.registerMultiTask('html2js', 'Compiles Angular-JS templates to JavaScript.', function() {
+  grunt.registerMultiTask('html2plainjs', 'Compiles HTML templates to plain old JavaScript.', function() {
 
     var options = this.options({
       base: 'src',
@@ -137,6 +149,7 @@ module.exports = function(grunt) {
       indentString: '  ',
       target: 'js',
       htmlmin: {},
+      angular: false,
       process: false,
       jade: { pretty: true },
       singleModule: false,
