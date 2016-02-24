@@ -20,7 +20,7 @@ grunt.loadNpmTasks('grunt-html2plainjs');
 
 ### Overview
 
-Compiles HTML to plain old Javascript. Use `angular: true` option to work in `html2js` mode. `options.rename` is mandatory
+Compiles HTML to plain old Javascript. Use `angular: true` option to work in `html2js` mode. `options.rename` is mandatory, and should return a valid string like so `'$templateCache_'+renameReturn` which should be an full word/valid variable name.
 
 ### Setup
 
