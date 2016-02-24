@@ -1,6 +1,6 @@
 Fork of https://github.com/karlgoldstein/grunt-html2js
 # grunt-html2plainjs
-> Converts HTML templates to plain old JavaScript
+Converts HTML templates to plain old JavaScript
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
 
